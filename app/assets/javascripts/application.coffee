@@ -5,8 +5,12 @@
 #= require joosy/railties
 #= require sugar
 
-#
-#= require_tree ./
+#= require_tree ./common
+#= require_tree ./helpers
+#= require_tree ./layouts
+#= require_tree ./templates
+#= require_tree ./pages
+#= require routes
 
 $ ->
   Joosy.Application.initialize 'body',

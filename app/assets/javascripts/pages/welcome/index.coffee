@@ -1,6 +1,6 @@
 Joosy.namespace 'Welcome', ->
-
   class @IndexPage extends ApplicationPage
+    
     @layout ApplicationLayout
     @view   'index'
 
@@ -9,13 +9,29 @@ Joosy.namespace 'Welcome', ->
       joosy:   '.joosy'
 
     @mapEvents
-      'mouseover $joosy': -> clearInterval @heartbeat
-      'mouseout $joosy': 'startHeartbeat'
+      'mouseover $joosy': 'stopHeartbeat'
+      'mouseout  $joosy': 'startHeartbeat'
+
+    @beforeLoad ->
+      log 'I::beforeLoad'
+
+    @fetch (complete) ->
+      log 'I::fetch ' + (new Date).toTimeString()
+      do complete
 
     @afterLoad ->
       @startHeartbeat()
       @$content().css
         'padding-top': "#{$(window).height() / 2 - 80}px"
+
+    @erase (complete) ->
+      log 'I::erase'
+      do @stopHeartbeat
+      do complete
+
+    stopHeartbeat: ->
+      log 'stopHeartbeat'
+      clearInterval @heartbeat
 
     startHeartbeat: ->
       @heartbeat = @setInterval 1500, =>
