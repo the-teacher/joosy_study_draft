@@ -18,10 +18,19 @@ Joosy.namespace 'Welcome', ->
       log 'I::fetch ' + (new Date).toTimeString()
       do complete
 
+    @fetch (complete) ->
+      log 'I::fetch 2' + (new Date).toTimeString()
+      do complete
+
     @afterLoad ->
+      log 'After Load'
       @startHeartbeat()
       @$content().css
         'padding-top': "#{$(window).height() / 2 - 80}px"
+
+    @fetch (complete) ->
+      log 'I::fetch 3' + (new Date).toTimeString()
+      do complete
 
     @erase (complete) ->
       log 'I::erase'

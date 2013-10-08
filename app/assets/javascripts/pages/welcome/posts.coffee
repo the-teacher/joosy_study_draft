@@ -6,30 +6,29 @@ Joosy.namespace 'Welcome', ->
       content: '#content'
       posts:   '.posts'
 
-    # @fetch (complete) ->
-    #   log 'Fetch!'
-    #   Post.find '1', (posts) =>
-    #     @data.posts = posts
-    #     complete()
+    @fetch (complete) ->
+      log 'Fetch!'
+      Post.find '1', (posts) =>
+        @data.posts = posts
+        complete()
 
-    # @beforeLoad (complete) ->
-    #   Post.all [],
-    #     params:
-    #       page: 1
-    #     (error, posts) =>
-    #       @data.posts = posts
-    #       do complete
-    #   log 'P::beforeLoad'
+    @beforeLoad ->
+      Post.all [],
+        params:
+          page: 1
+        (error, posts) =>
+          @data.posts = posts
+      log 'P::beforeLoad'
 
-    # @fetch (complete) ->
-    #   do complete
+    @fetch (complete) ->
+      do complete
 
-    # @afterLoad ->
-    #   @show_posts()
+    @afterLoad ->
+      @show_posts()
 
-    # @erase (complete) ->
-    #   log 'P::erase'
-    #   do complete
+    @erase (complete) ->
+      log 'P::erase'
+      do complete
 
-    # show_posts: ->
-    #   log 'P::Show posts', @data, @$posts()
+    show_posts: ->
+      log 'P::Show posts', @data, @$posts()
