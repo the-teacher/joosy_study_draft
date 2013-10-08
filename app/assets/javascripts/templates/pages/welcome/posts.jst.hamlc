@@ -5,3 +5,4 @@
       != @linkTo 'Home', '/'
     .posts
       There is should be list of items
+      = Post.all []
